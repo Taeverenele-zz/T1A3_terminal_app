@@ -11,7 +11,6 @@ class User
                 user_password = gets.chomp
                 if user[:password] == user_password
                     puts "Login successful"
-                    exit
                 else
                     puts "Incorrect password"
                 end
@@ -22,7 +21,6 @@ class User
     end
 
     def self.checkIfNameExists(arr, user_name)
-        newUserHash = {}
         arr.each do |user|
             loop do 
                 if user[:name] == user_name
@@ -31,11 +29,8 @@ class User
                 end
                 break if user[:name] != user_name
             end
-            puts "Please enter a password"
-            user_password = gets.chomp
-            newUserHash[:name] = user_name
-            newUserHash[:password] = user_password
-            exit
         end
+        puts "Please enter a password"
+        user_password = gets.chomp
     end
 end

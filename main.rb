@@ -29,11 +29,14 @@ while app_on
     when 1
         print "Name your project folder: "
         folder_name = gets.chomp
-        system("mkdir #{folder_name}")
+        system "mkdir #{folder_name}"
+        Dir.chdir("#{folder_name}")
+        system("touch index.html")
     when 4
         system("clear")
         app_on = false
     end
+
 end
 
 

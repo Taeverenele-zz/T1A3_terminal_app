@@ -4,6 +4,7 @@ require 'json'
 require_relative './user'
 require_relative './methods/methods'
 
+
 app_on = true
 
 users_array = []
@@ -31,11 +32,19 @@ while app_on
         folder_name = gets.chomp
         system "mkdir #{folder_name}"
         Dir.chdir("#{folder_name}")
-        system("touch index.html")
+        system("touch index.html") 
     when 4
         system("clear")
         app_on = false
     end
+    
+    File.foreach("../template.html.erb") do |line| 
+        File.open("index.html", "a") do |f|
+            f.write line
+        end
+    end
+
+    puts ""
 
 end
 

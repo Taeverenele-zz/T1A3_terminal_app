@@ -8,6 +8,7 @@ require_relative './methods/methods'
 app_on = true
 
 users_array = []
+add_files_array = []
 
 def welcomeMsg
     welcome = Artii::Base.new
@@ -33,6 +34,11 @@ while app_on
         system "mkdir #{folder_name}"
         Dir.chdir("#{folder_name}")
         system("touch index.html") 
+        puts "A new folder #{folder_name} was created with an index.html file."
+        add_files = %w(CSS javaScript)
+        prompt.multi_select("Add one or more files to your project: ", add_files)
+        add_files.each {|file| add_files_array << file}
+        p add_files_array
     when 4
         system("clear")
         app_on = false
@@ -43,8 +49,6 @@ while app_on
             f.write line
         end
     end
-
-    puts ""
 
 end
 

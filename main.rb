@@ -1,7 +1,9 @@
 require 'artii'
 require 'tty-prompt'
 require 'json'
+require 'open3'
 require_relative './user'
+require_relative './folder'
 require_relative './methods/methods'
 
 
@@ -9,16 +11,18 @@ app_on = true
 
 users_array = []
 add_files_array = []
+all_folders = []
 
 def welcomeMsg
     welcome = Artii::Base.new
-    puts welcome.asciify('HTML Boilerpate Creator')
+    puts welcome.asciify('HTML Boilerplate Creator')
     puts "***********************************************************************************************************************"
     puts "Welcome to the HTML Boilerplate creator,"
     puts  "where we will help you set up an HTML file specific to your project needs!"
     puts
 end
 
+welcomeMsg
 while app_on
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
@@ -31,16 +35,20 @@ while app_on
     when 1
         print "Name your project folder: "
         folder_name = gets.chomp
-        system "mkdir #{folder_name}"
-        Dir.chdir("#{folder_name}")
-        system("touch index.html") 
-        puts "A new folder #{folder_name} was created with an index.html file."
-        add_files = %w(CSS javaScript)
+        add_files = %w(CSS JavaScript None)
         prompt.multi_select("Add one or more files to your project: ", add_files)
         add_files.each {|file| add_files_array << file}
+        `mkdir #{folder_name}`
+        Dir.chdir("#{folder_name}")
+        `touch index.html`
+        existing_dir, stderr, status = Open3.capture3("ls ../")
+        p existing_dir.split("\n")
+        puts "A new folder #{folder_name} was created with an index.html file."
         p add_files_array
+        all_folders << folder_name
+        p all_folders
     when 4
-        system("clear")
+        system"clear"
         app_on = false
     end
     

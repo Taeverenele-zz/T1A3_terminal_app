@@ -1,5 +1,6 @@
 require 'tty-prompt'
 require 'open3'
+require_relative 'exceptions/exceptions'
 
 
 class Folder
@@ -12,7 +13,7 @@ class Folder
 
     def createFolder
         print "Name your project folder: "
-        @folder_name = gets.chomp
+        @folder_name = gets.chomp.tr(" ", "_")
         doesFolderExist?
         `mkdir #{folder_name}`
         Dir.chdir("#{folder_name}")

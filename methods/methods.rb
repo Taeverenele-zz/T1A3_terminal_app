@@ -1,11 +1,8 @@
-def createFolder(folder_name)
-    system("mkdir folder_name")
-end
-
-def createFile(file_name)
-    system("touch file_name")
-end
-
-def moveFile(file_name, folder)
-    system("file_name folder")
+def welcomeMsg
+    welcome = Artii::Base.new
+    puts welcome.asciify('HTML Boilerplate Creator')
+    puts "***********************************************************************************************************************"
+    puts "Welcome to the HTML Boilerplate creator,"
+    puts  "where we will help you set up an HTML file specific to your project needs!"
+    puts
 end

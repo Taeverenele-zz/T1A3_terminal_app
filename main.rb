@@ -2,25 +2,16 @@ require 'artii'
 require 'tty-prompt'
 require 'json'
 require 'open3'
+require 'erb'
 require_relative './user'
 require_relative './folder'
 require_relative './methods/methods'
-
+require_relative './exceptions/exceptions'
 
 app_on = true
-
 users_array = []
 add_files_array = []
 all_folders = []
-
-def welcomeMsg
-    welcome = Artii::Base.new
-    puts welcome.asciify('HTML Boilerplate Creator')
-    puts "***********************************************************************************************************************"
-    puts "Welcome to the HTML Boilerplate creator,"
-    puts  "where we will help you set up an HTML file specific to your project needs!"
-    puts
-end
 
 welcomeMsg
 while app_on
@@ -38,26 +29,20 @@ while app_on
         folder.createFolder
         folder.addCSS?
         folder.addJavaScript?
-
-            # p add_files_array
-        # existing_dir, stderr, status = Open3.capture3("ls ../")
-        # p existing_dir.split("\n")
-        # puts "A new folder #{folder_name} was created with an index.html file."
-        # p add_files_array
-        # all_folders << folder_name
-        # p all_folders
     when 4
         system"clear"
         app_on = false
     end
     
-    File.foreach("../template.html.erb") do |line| 
+
+    File.foreach("../template.erb") do |line| 
         File.open("index.html", "a") do |f|
             f.write line
         end
     end
 
 end
+
 
 
 # while app_on

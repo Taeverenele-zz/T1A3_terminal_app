@@ -57,9 +57,9 @@ while app_on
         end
     end
 
+    system("code .")
+    system("open ./index.html")
 end
-
-
 
 # while app_on
 

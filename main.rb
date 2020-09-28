@@ -51,11 +51,11 @@ while app_on
         app_on = false
     end
     
-    # File.foreach("../template.html.erb") do |line| 
-    #     File.open("index.html", "a") do |f|
-    #         f.write line
-    #     end
-    # end
+    File.foreach("../template.html.erb") do |line| 
+        File.open("index.html", "a") do |f|
+            f.write line
+        end
+    end
 
 end
 

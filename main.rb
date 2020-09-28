@@ -28,35 +28,34 @@ while app_on
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
     user_menu_input = prompt.select("Main Menu") do |menu|
         menu.choice 'Start', 1
+        menu.choice 'Help', 2
         menu.choice 'Exit', 4
     end
 
     case user_menu_input
     when 1
-        print "Name your project folder: "
-        folder_name = gets.chomp
-        add_files = %w(CSS JavaScript None)
-        prompt.multi_select("Add one or more files to your project: ", add_files)
-        add_files.each {|file| add_files_array << file}
-        `mkdir #{folder_name}`
-        Dir.chdir("#{folder_name}")
-        `touch index.html`
-        existing_dir, stderr, status = Open3.capture3("ls ../")
-        p existing_dir.split("\n")
-        puts "A new folder #{folder_name} was created with an index.html file."
-        p add_files_array
-        all_folders << folder_name
-        p all_folders
+        folder = Folder.new(@folder_name)
+        folder.createFolder
+        folder.addCSS?
+        folder.addJavaScript?
+
+            # p add_files_array
+        # existing_dir, stderr, status = Open3.capture3("ls ../")
+        # p existing_dir.split("\n")
+        # puts "A new folder #{folder_name} was created with an index.html file."
+        # p add_files_array
+        # all_folders << folder_name
+        # p all_folders
     when 4
         system"clear"
         app_on = false
     end
     
-    File.foreach("../template.html.erb") do |line| 
-        File.open("index.html", "a") do |f|
-            f.write line
-        end
-    end
+    # File.foreach("../template.html.erb") do |line| 
+    #     File.open("index.html", "a") do |f|
+    #         f.write line
+    #     end
+    # end
 
 end
 

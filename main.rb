@@ -34,10 +34,26 @@ while app_on
         app_on = false
     end
     
-
-    File.foreach("../template.erb") do |line| 
+    File.foreach("../template.txt") do |line| 
         File.open("index.html", "a") do |f|
-            f.write line
+            folder_title = folder.folder_name.split('_').map(&:capitalize)*' '
+            if line.include?('<title>')
+                if folder.all_files.include?('styles') && folder.all_files.include?('script')
+                    f.write "\t<title>#{folder_title}</title>\n"
+                    f.write "\t<link rel='stylesheet' href='style.css'>\n"
+                    f.write "\t<script src='script.js'></script>\n"
+                elsif folder.all_files.include?('styles') && !folder.all_files.include?('script')
+                    f.write "\t<title>#{folder_title}</title>\n"
+                    f.write "\t<script src='script.js'></script>"
+                elsif folder.all_files.include?('script') && !folder.all_files.include?('styles')
+                    f.write "\t<title>#{folder_title}</title>\n"
+                    f.write "\t<script src='script.js'></script>"
+                else
+                    f.write "\t<title>#{folder_title}</title>"
+                end
+            else
+                f.write line
+            end
         end
     end
 

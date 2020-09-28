@@ -5,10 +5,10 @@ require_relative 'exceptions/exceptions'
 
 class Folder
 
-    attr_reader :folder_name
+    attr_reader :folder_name, :all_files
     def initialize(folder_name)
         @folder_name = folder_name
-        # @all_folders = []
+        @all_files = []
     end
 
     def createFolder
@@ -18,6 +18,7 @@ class Folder
         `mkdir #{folder_name}`
         Dir.chdir("#{folder_name}")
         `touch index.html`
+        @all_files << 'index'
     end
 
     def doesFolderExist?
@@ -39,6 +40,7 @@ class Folder
         case user_input
         when 1
             `touch styles.css`
+            @all_files << 'styles'
         when 2
             return
         end
@@ -52,7 +54,9 @@ class Folder
         case user_input
         when 1
             `touch script.js`
+            @all_files << 'script'
         when 2
+            return
             return
         end
     end

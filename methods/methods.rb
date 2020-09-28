@@ -1,3 +1,4 @@
+
 def welcomeMsg
     welcome = Artii::Base.new
     puts welcome.asciify('HTML Boilerplate Creator')

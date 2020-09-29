@@ -13,6 +13,10 @@ class Folder
     def createFolder
         print "Name your project folder: "
         @folder_name = gets.chomp.tr(" ", "_")
+        while @folder_name.empty?
+            print "Name cannot be an empty string, choose another name: "
+            @folder_name = gets.chomp.tr(" ", "_")
+        end
         doesFolderExist?
         `mkdir #{folder_name}`
         Dir.chdir("#{folder_name}")

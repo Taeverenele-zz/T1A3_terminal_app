@@ -32,6 +32,7 @@ while app_on
     when 2
         system"clear"
         help
+        puts ''
     when 4
         system"clear"
         app_on = false

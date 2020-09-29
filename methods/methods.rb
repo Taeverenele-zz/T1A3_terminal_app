@@ -9,8 +9,6 @@ def welcomeMsg
     puts pastel.bright_yellow(font.write("HTML"))
     puts pastel.bright_magenta(font.write("BOILERPLATE"))
     puts pastel.bright_red(font.write("GERENATOR"))
-    # box = TTY::Box.frame "Welcome to the", "#{title1}", "#{title2}", "#{title3}", padding: 5, align: :center 
-    # print box
 end
 def help
     pastel = Pastel.new
@@ -27,8 +25,14 @@ def errorMsg
        | |  ERROR,   | |
        | | TRY AGAIN | |
        | |___________| |
-       \=_____________=/      
+       \\=_____________=/      
        / ''''''''''''' \\                         
       / ::::::::::::::: \\                  
      (___________________)"
+end
+def farewellMsg
+    font = TTY::Font.new(:starwars)
+    title1 = font.write("BYE")
+    box = TTY::Box.frame "#{title1}", "#{title1}", padding: 5, align: :center 
+    print box
 end

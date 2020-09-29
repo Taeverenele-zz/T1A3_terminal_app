@@ -1,7 +1,5 @@
-require 'artii'
 require 'tty-prompt'
 require 'json'
-require 'open3'
 require 'erb'
 require_relative './user'
 require_relative './folder'
@@ -13,12 +11,13 @@ users_array = []
 add_files_array = []
 all_folders = []
 
-welcomeMsg
 while app_on
+    welcomeMsg
+    sleep 2
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
-    user_menu_input = prompt.select("Main Menu") do |menu|
-        menu.choice 'Start', 1
+    user_menu_input = prompt.select("What would you like to do?") do |menu|
+        menu.choice 'Start a new project', 1
         menu.choice 'Help', 2
         menu.choice 'Exit', 4
     end
@@ -44,7 +43,7 @@ while app_on
                     f.write "\t<script src='script.js'></script>\n"
                 elsif folder.all_files.include?('styles') && !folder.all_files.include?('script')
                     f.write "\t<title>#{folder_title}</title>\n"
-                    f.write "\t<script src='script.js'></script>"
+                    f.write "\t<link rel='stylesheet' href='style.css'>"
                 elsif folder.all_files.include?('script') && !folder.all_files.include?('styles')
                     f.write "\t<title>#{folder_title}</title>\n"
                     f.write "\t<script src='script.js'></script>"
@@ -57,9 +56,9 @@ while app_on
         end
     end
 
-    system("code .")
+    # system("code .")
     
-    system("open ./index.html")
+    # system("open ./index.html")
 end
 
 # while app_on

@@ -1,6 +1,7 @@
 require 'tty-prompt'
 require 'open3'
 require_relative 'exceptions/exceptions'
+require_relative 'methods/methods'
 
 class Folder
 
@@ -14,6 +15,7 @@ class Folder
         print "Name your project folder: "
         @folder_name = gets.chomp.tr(" ", "_")
         while @folder_name.empty?
+            errorMsg
             print "Name cannot be an empty string, choose another name: "
             @folder_name = gets.chomp.tr(" ", "_")
         end
@@ -28,6 +30,7 @@ class Folder
         existing_dir, stderr, status = Open3.capture3("ls")
         existing_dir.split("\n").each do |dir|
             if dir == @folder_name
+
                 print "You already have a folder called #{@folder_name}, please choose another name: "
                 @folder_name = gets.chomp
             end

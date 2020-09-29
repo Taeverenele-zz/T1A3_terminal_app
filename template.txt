@@ -6,6 +6,6 @@
     <title><%= @folder_name %></title>
 </head>
 <body>
-    
+    <h1>Thank you for using HTML Boilerplate Generator</h1>
 </body>
 </html>

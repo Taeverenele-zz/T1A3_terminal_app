@@ -2,7 +2,6 @@ require 'tty-prompt'
 require 'open3'
 require_relative 'exceptions/exceptions'
 
-
 class Folder
 
     attr_reader :folder_name, :all_files

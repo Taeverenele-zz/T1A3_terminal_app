@@ -11,9 +11,9 @@ users_array = []
 add_files_array = []
 all_folders = []
 
+welcomeMsg
+sleep 2
 while app_on
-    welcomeMsg
-    sleep 2
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
     user_menu_input = prompt.select("What would you like to do?") do |menu|
@@ -29,6 +29,9 @@ while app_on
         folder.addCSS?
         folder.addJavaScript?
         folder.writeFile
+    when 2
+        system"clear"
+        help
     when 4
         system"clear"
         app_on = false

@@ -61,4 +61,28 @@ class Folder
         end
     end
 
+    def writeFile
+        File.foreach("../template.txt") do |line| 
+            File.open("index.html", "a") do |f|
+                folder_title = folder_name.split('_').map(&:capitalize)*' '
+                if line.include?('<title>')
+                    if @all_files.include?('styles') && @all_files.include?('script')
+                        f.write "\t<title>#{folder_title}</title>\n"
+                        f.write "\t<link rel='stylesheet' href='style.css'>\n"
+                        f.write "\t<script src='script.js'></script>\n"
+                    elsif @all_files.include?('styles') && !@all_files.include?('script')
+                        f.write "\t<title>#{folder_title}</title>\n"
+                        f.write "\t<link rel='stylesheet' href='style.css'>"
+                    elsif @all_files.include?('script') && !@all_files.include?('styles')
+                        f.write "\t<title>#{folder_title}</title>\n"
+                        f.write "\t<script src='script.js'></script>"
+                    else
+                        f.write "\t<title>#{folder_title}</title>"
+                    end
+                else
+                    f.write line
+                end
+            end
+        end
+    end
 end

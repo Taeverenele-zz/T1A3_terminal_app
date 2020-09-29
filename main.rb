@@ -35,12 +35,13 @@ while app_on
         puts ''
     when 4
         system"clear"
+        farewellMsg
         app_on = false
     end
 
     # system("code .")
     
-    system("open ./index.html")
+    # system("open ./index.html")
 end
 
 # while app_on

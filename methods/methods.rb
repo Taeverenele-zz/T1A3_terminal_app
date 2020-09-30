@@ -8,7 +8,7 @@ def welcomeMsg
     pastel = Pastel.new
     puts pastel.bright_yellow(font.write("HTML"))
     puts pastel.bright_magenta(font.write("BOILERPLATE"))
-    puts pastel.bright_red(font.write("GERENATOR"))
+    puts pastel.bright_red(font.write("GENERATOR"))
 end
 def help
     pastel = Pastel.new

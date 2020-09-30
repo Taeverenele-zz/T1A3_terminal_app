@@ -8,7 +8,7 @@ class User
     def self.authenticateUser(username, password, list_of_users)
         list_of_users.each do |user|
             if user[:name] == username && user[:password] == password
-                return user
+                return "Welcome back #{username}"
             end
         end
         return "Credentials were not correct"

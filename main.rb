@@ -1,5 +1,5 @@
 require 'tty-prompt'
-require 'json'
+require 'csv'
 require 'erb'
 require_relative './user'
 require_relative './folder'
@@ -7,7 +7,7 @@ require_relative './methods/methods'
 require_relative './exceptions/exceptions'
 
 app_on = true
-users_array = []
+users_array = [name: 'Nele', password: '123456']
 add_files_array = []
 all_folders = []
 
@@ -17,27 +17,61 @@ while app_on
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
     user_menu_input = prompt.select("What would you like to do?") do |menu|
-        menu.choice 'Start a new project', 1
-        menu.choice 'Help', 2
+        menu.choice 'Login', 1
+        menu.choice 'Signup', 2
+        menu.choice 'Help', 3
         menu.choice 'Exit', 4
     end
 
-    case user_menu_input
+    case user_menu_input 
     when 1
-        folder = Folder.new(@folder_name)
-        folder.createFolder
-        folder.addCSS?
-        folder.addJavaScript?
-        folder.writeFile
+        attempts = 1
+        while attempts < 4
+            print "Username: "
+            username = gets.chomp
+            print "Password: "
+            password = gets.chomp
+            puts User.authenticateUser(username, password, users_array)
+            puts "Press n to quit or any other key to continue: "
+            input = gets.chomp.downcase
+            break if input == "n"
+            attempts += 1
+        end
+        puts "You have exceeded the number of attempts" if attempts == 4
     when 2
+        print "Username: "
+        username = gets.chomp
+        print "Password: "
+        password = gets.chomp
+        newUser = [username, password]
+        CSV.open("users_data.csv", "a+") do |csv|
+            csv << newUser
+        end
+    when 3
         system"clear"
         help
-        puts ''
     when 4
         system"clear"
         farewellMsg
         app_on = false
     end
+
+    # case user_menu_input
+    # when 1
+    #     folder = Folder.new(@folder_name)
+    #     folder.createFolder
+    #     folder.addCSS?
+    #     folder.addJavaScript?
+    #     folder.writeFile
+    # when 2
+    #     system"clear"
+    #     help
+    #     puts ''
+    # when 4
+    #     system"clear"
+    #     farewellMsg
+    #     app_on = false
+    # end
 
     # system("code .")
     

@@ -2,12 +2,14 @@ require 'tty-prompt'
 require 'csv'
 require 'erb'
 require 'smarter_csv'
-require_relative './user'
-require_relative './folder'
+require_relative './classes/user'
+require_relative './classes/folder'
 require_relative './methods/methods'
 require_relative './exceptions/exceptions'
+require_relative './classes/boilerplate'
 
 users_array = SmarterCSV.process("users_data.csv")
+p users_array
 names_array = []
 users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
 
@@ -64,12 +66,14 @@ while app_on
             when 2
                 
             end               
-             user_menu_input = prompt.select("Would you like to save current project in your boileplates?") do |menu|
+             user_menu_input = prompt.select("Would you like to save current project in your boilerplates?") do |menu|
                 menu.choice 'Yes', 1
                 menu.choice 'No', 2
             end
             case user_menu_input
             when 1
+                boilerplate = Boilerplate.new(@boilerplate_name)
+                boilerplate.createNewBoilerplate
             when 2
                 puts "Thank you for visiting."
                 puts "See you again soon!"

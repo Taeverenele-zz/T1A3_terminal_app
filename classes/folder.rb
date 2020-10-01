@@ -1,7 +1,7 @@
 require 'tty-prompt'
 require 'open3'
-require_relative 'exceptions/exceptions'
-require_relative 'methods/methods'
+require_relative '../exceptions/exceptions'
+require_relative '../methods/methods'
 
 class Folder
 

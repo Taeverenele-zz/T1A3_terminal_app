@@ -1,16 +1,4 @@
-name,password
+name,password,template
 
 Nele,123
-Jock,asd
-Nele Taevere,asd
-Jock Dalby,zxc
-Neletaevere,qwe
-Neletaevere,asd
-Jock,asd
-Nele Taevere,123
-Neletaevere,123
-Nele,zxc
-neledalby,qwe
-Samsmith,asd
-Mary Allen,asd
-Bob,password
+

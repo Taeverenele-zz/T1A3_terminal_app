@@ -12,7 +12,6 @@ class User
             username = gets.chomp
             print "Password: "
             password = gets.chomp
-            # list_of_users = SmarterCSV.process("users_data.csv")
             list_of_users.each do |user|
                 if user[:name].delete(' ').downcase == username.delete(' ').downcase && user[:password].to_s == password
                     return "Welcome back #{user[:name]}"

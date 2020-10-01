@@ -19,6 +19,7 @@ app_on = true
 add_files_array = []
 all_folders = []
 
+
 welcomeMsg
 # sleep 2
 while app_on
@@ -35,7 +36,6 @@ while app_on
     when 1
         system"clear"
         puts User.authenticateUser(users_array)
-        system"clear"
         user_menu_input = prompt.select("What would you like to do next?") do |menu|
             menu.choice 'Start a new project', 1
             menu.choice 'View your boilerplates', 2

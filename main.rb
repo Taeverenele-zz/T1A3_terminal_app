@@ -33,8 +33,31 @@ while app_on
 
     case user_menu_input 
     when 1
+        system"clear"
         puts User.authenticateUser(users_array)
+        system"clear"
+        user_menu_input = prompt.select("What would you like to do next?") do |menu|
+            menu.choice 'Start a new project', 1
+            menu.choice 'View your boilerplates', 2
+            menu.choice 'Delete a boilerplate', 3
+            menu.choice 'Exit', 4
+        end
+        case user_menu_input
+        when 1
+            folder = Folder.new(@folder_name)
+            folder.createFolder
+            folder.addCSS?
+            folder.addJavaScript?
+            folder.writeFile
+        when 2
+        when 3
+        when 4
+            system"clear"
+            farewellMsg
+            app_on = false
+        end
     when 2
+        system"clear"
         puts User.checkIfNameExists(names_array)
     when 3
         system"clear"

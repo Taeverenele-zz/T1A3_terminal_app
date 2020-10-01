@@ -47,6 +47,7 @@ class Folder
         when 1
             `touch styles.css`
             @all_files << 'styles'
+            return
         when 2
             return
         end
@@ -61,8 +62,8 @@ class Folder
         when 1
             `touch script.js`
             @all_files << 'script'
-        when 2
             return
+        when 2
             return
         end
     end
@@ -76,14 +77,18 @@ class Folder
                         f.write "\t<title>#{folder_title}</title>\n"
                         f.write "\t<link rel='stylesheet' href='style.css'>\n"
                         f.write "\t<script src='script.js'></script>\n"
+                        puts "A new folder called '#{folder_name}' was created with styles.css and script.js files!"
                     elsif @all_files.include?('styles') && !@all_files.include?('script')
                         f.write "\t<title>#{folder_title}</title>\n"
                         f.write "\t<link rel='stylesheet' href='style.css'>"
+                        puts "A new folder called '#{folder_name}' was created with styles.css file!"
                     elsif @all_files.include?('script') && !@all_files.include?('styles')
                         f.write "\t<title>#{folder_title}</title>\n"
                         f.write "\t<script src='script.js'></script>"
+                        puts "A new folder called '#{folder_name}' was created with script.js file!"
                     else
                         f.write "\t<title>#{folder_title}</title>"
+                        puts "A new folder called '#{folder_name}' was created!"
                     end
                 else
                     f.write line

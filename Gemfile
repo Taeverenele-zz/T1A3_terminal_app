@@ -17,3 +17,5 @@ gem "tty-font", "~> 0.5.0"
 gem "tty-box", "~> 0.6.0"
 
 gem "pastel", "~> 0.8.0"
+
+gem "smarter_csv", "~> 1.2"

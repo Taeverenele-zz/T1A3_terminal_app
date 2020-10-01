@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    colorize (0.8.1)
     diff-lcs (1.4.4)
     pastel (0.8.0)
       tty-color (~> 0.5)
@@ -18,6 +17,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
+    smarter_csv (1.2.6)
     strings (0.2.0)
       strings-ansi (~> 0.2)
       unicode-display_width (~> 1.5)
@@ -46,9 +46,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  colorize (~> 0.8.1)
   pastel (~> 0.8.0)
   rspec (~> 3.9)
+  smarter_csv (~> 1.2)
   tty-box (~> 0.6.0)
   tty-font (~> 0.5.0)
   tty-prompt (~> 0.22.0)

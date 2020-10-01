@@ -1,18 +1,26 @@
 require 'tty-prompt'
 require 'csv'
 require 'erb'
+require 'smarter_csv'
 require_relative './user'
 require_relative './folder'
 require_relative './methods/methods'
 require_relative './exceptions/exceptions'
 
+users_array = SmarterCSV.process("users_data.csv")
+names_array = []
+users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
+
+# data.each{|user| p user[:name].downcase}
+# p data
+
 app_on = true
-users_array = [name: 'Nele', password: '123456']
+# users_array = []
 add_files_array = []
 all_folders = []
 
 welcomeMsg
-sleep 2
+# sleep 2
 while app_on
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
@@ -25,28 +33,9 @@ while app_on
 
     case user_menu_input 
     when 1
-        attempts = 1
-        while attempts < 4
-            print "Username: "
-            username = gets.chomp
-            print "Password: "
-            password = gets.chomp
-            puts User.authenticateUser(username, password, users_array)
-            puts "Press n to quit or any other key to continue: "
-            input = gets.chomp.downcase
-            break if input == "n"
-            attempts += 1
-        end
-        puts "You have exceeded the number of attempts" if attempts == 4
+        puts User.authenticateUser(users_array)
     when 2
-        print "Username: "
-        username = gets.chomp
-        print "Password: "
-        password = gets.chomp
-        newUser = [username, password]
-        CSV.open("users_data.csv", "a+") do |csv|
-            csv << newUser
-        end
+        puts User.checkIfNameExists(names_array)
     when 3
         system"clear"
         help

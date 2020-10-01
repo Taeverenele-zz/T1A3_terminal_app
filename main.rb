@@ -19,7 +19,6 @@ all_folders = []
 welcomeMsg
 # sleep 2
 while app_on
-
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
     user_menu_input = prompt.select("What would you like to do?") do |menu|
         menu.choice 'Signup', 1
@@ -27,7 +26,6 @@ while app_on
         menu.choice 'Help', 3
         menu.choice 'Exit', 4
     end
-
     case user_menu_input 
     # New user sign up
     when 1
@@ -46,11 +44,40 @@ while app_on
             folder.addCSS?
             folder.addJavaScript?
             folder.writeFile
-        # Exit the app
+            user_menu_input = prompt.select("Would you like to open folder in VS Code?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+                system("code .")
+            when 2
+                
+            end
+            user_menu_input = prompt.select("Would you like to open index.html in your browser?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+                system("open ./index.html")
+            when 2
+                
+            end               
+             user_menu_input = prompt.select("Would you like to save current project in your boileplates?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+            when 2
+                puts "Thank you for visiting."
+                puts "See you again soon!"
+                sleep 1
+                farewellMsg
+                app_on = false
+            end
         when 2
-            system"clear"
-            farewellMsg
-            app_on = false
         end
     # Existing user log in
     when 2
@@ -90,9 +117,5 @@ while app_on
         farewellMsg
         app_on = false
     end
-
-    # system("code .")
-    
-    # system("open ./index.html")
 end
 

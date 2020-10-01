@@ -11,11 +11,7 @@ users_array = SmarterCSV.process("users_data.csv")
 names_array = []
 users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
 
-# data.each{|user| p user[:name].downcase}
-# p data
-
 app_on = true
-# users_array = []
 add_files_array = []
 all_folders = []
 
@@ -26,14 +22,38 @@ while app_on
 
     prompt = TTY::Prompt.new(symbols: {marker: '►'})
     user_menu_input = prompt.select("What would you like to do?") do |menu|
-        menu.choice 'Login', 1
-        menu.choice 'Signup', 2
+        menu.choice 'Signup', 1
+        menu.choice 'Login', 2
         menu.choice 'Help', 3
         menu.choice 'Exit', 4
     end
 
     case user_menu_input 
+    # New user sign up
     when 1
+        system"clear"
+        user = User.new(@user_name, @user_password)
+        puts user.checkIfNameExists(names_array)
+        user_menu_input = prompt.select("What would you like to do next?") do |menu|
+            menu.choice 'Start a new project', 1
+            menu.choice 'Exit', 2
+        end
+        case user_menu_input
+        # New user starting a new project
+        when 1
+            folder = Folder.new(@folder_name)
+            folder.createFolder
+            folder.addCSS?
+            folder.addJavaScript?
+            folder.writeFile
+        # Exit the app
+        when 2
+            system"clear"
+            farewellMsg
+            app_on = false
+        end
+    # Existing user log in
+    when 2
         system"clear"
         puts User.authenticateUser(users_array)
         user_menu_input = prompt.select("What would you like to do next?") do |menu|
@@ -43,97 +63,36 @@ while app_on
             menu.choice 'Exit', 4
         end
         case user_menu_input
+        # Existing user start a new project
         when 1
             folder = Folder.new(@folder_name)
             folder.createFolder
             folder.addCSS?
             folder.addJavaScript?
             folder.writeFile
+        # Existing user view saved boilerplates
         when 2
+        # Existing user delete saved boilerplate
         when 3
+        # Exit the app
         when 4
             system"clear"
             farewellMsg
             app_on = false
         end
-    when 2
-        system"clear"
-        puts User.checkIfNameExists(names_array)
+    # Display help message
     when 3
         system"clear"
         help
+    # Exit the app
     when 4
         system"clear"
         farewellMsg
         app_on = false
     end
 
-    # case user_menu_input
-    # when 1
-    #     folder = Folder.new(@folder_name)
-    #     folder.createFolder
-    #     folder.addCSS?
-    #     folder.addJavaScript?
-    #     folder.writeFile
-    # when 2
-    #     system"clear"
-    #     help
-    #     puts ''
-    # when 4
-    #     system"clear"
-    #     farewellMsg
-    #     app_on = false
-    # end
-
     # system("code .")
     
     # system("open ./index.html")
 end
 
-# while app_on
-
-#     system 'clear'
-#     welcomeMsg
-#     prompt = TTY::Prompt.new(symbols: {marker: '►'})
-#     user_menu_input = prompt.select("Main Menu") do |menu|
-#         menu.choice 'Sign In', 1
-#         menu.choice 'Sign Up', 2
-#         menu.choice 'Help', 3
-#         menu.choice 'Exit', 4
-#     end
-#     case user_menu_input
-#     when 1
-#         attempts = 1
-#         while attempts < 4
-#             print "Username: "
-#             username = gets.chomp
-#             print "Password: "
-#             password = gets.chomp
-#             puts User.authenticateUser(username, password, users_array)
-
-#             puts "Press n to quit or any other key to continue: "
-#             input = gets.chomp.downcase
-#             break if input == "n"
-#             attempts += 1
-#         end
-#         puts "You have exceeded the number of attempts" if attempts == 4
-#     when 2
-#         puts "Please enter a username: "
-#         user_name = gets.chomp
-#         puts User.checkIfNameExists(users_array, user_name)
-#         newUser = {}
-#         newUser[:name] = user_name
-#         puts "Please enter a password: "
-#         password = gets.chomp
-#         newUser[:password] = password
-#         users_array << newUser
-#         File.open("data.json", "w") do |f|
-#             f.write(users_array.to_json)
-#         end
-#     when 3
-#         puts "More information about this app"
-#     when 4
-#         system("clear")
-#         app_on = false
-#     end
-# end

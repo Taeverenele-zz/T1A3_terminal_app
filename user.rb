@@ -24,7 +24,7 @@ class User
     puts "You have exceeded the number of attempts" if attempts == 4
     end
 
-    def self.checkIfNameExists(array)
+    def checkIfNameExists(array)
         loop do 
             print "Username: "
             user_name = gets.chomp
@@ -32,8 +32,8 @@ class User
                 if !array.include?(user_name.downcase.delete(' '))
                     print "Password: "
                     user_password = gets.chomp
-                    new_user = User.new(user_name, user_password)
-                    new_user_array = [new_user.user_name.split(' ').map(&:capitalize)*' ', new_user.user_password]
+                    # new_user = User.new(user_name, user_password)
+                    new_user_array = [user_name.split(' ').map(&:capitalize)*' ', user_password]
                     CSV.open("users_data.csv", "a+") do |csv|
                         csv << new_user_array
                     end

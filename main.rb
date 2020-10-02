@@ -89,6 +89,12 @@ while app_on
                 CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
                     csv << new_boilerplate_array
                 end
+                puts "Your boilerplate was saved"
+                puts "Thank you for using HTML Boilerplate Creator"
+                puts "See you again soon"
+                sleep 1
+                farewellMsg
+                app_on = false
             when 2
                 puts "Thank you for visiting."
                 puts "See you again soon!"

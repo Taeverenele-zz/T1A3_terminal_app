@@ -1,1 +1,4 @@
-user_name,boilerplate_name,components_array
+current_user,boilerplate_name,components_array
+
+simon,simons_project,index,styles,script
+jade,jades_project,index,styles,script

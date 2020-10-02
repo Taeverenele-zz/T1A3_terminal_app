@@ -9,7 +9,8 @@ require_relative './exceptions/exceptions'
 require_relative './classes/boilerplate'
 
 users_array = SmarterCSV.process("users_data.csv")
-p users_array
+boilerplate_array = SmarterCSV.process("users_saved_boilerplates.csv")
+p boilerplate_array
 names_array = []
 users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
 
@@ -32,8 +33,16 @@ while app_on
     # New user sign up
     when 1
         system"clear"
-        user = User.new(@user_name, @user_password)
-        puts user.checkIfNameExists(names_array)
+        print "Username: "
+        user_name = gets.chomp
+        puts User.checkIfNameExists(user_name, names_array)
+        print "Password: "
+        user_password = gets.chomp
+        user = User.new(user_name, user_password, user_name)
+        new_user_array = [user_name.split(' ').map(&:capitalize)*' ', user_password]
+        CSV.open("users_data.csv", "a+") do |csv|
+            csv << new_user_array
+        end
         user_menu_input = prompt.select("What would you like to do next?") do |menu|
             menu.choice 'Start a new project', 1
             menu.choice 'Exit', 2
@@ -72,8 +81,14 @@ while app_on
             end
             case user_menu_input
             when 1
-                boilerplate = Boilerplate.new(@boilerplate_name)
-                boilerplate.createNewBoilerplate
+                Dir.chdir("..")
+                print "What would you like to call this boilerplate: "
+                boilerplate_name = gets.chomp
+                boilerplate = Boilerplate.new(user.current_user, boilerplate_name)
+                new_boilerplate_array = [user.current_user, boilerplate_name]
+                CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
+                    csv << new_boilerplate_array + folder.all_files.to_a
+                end
             when 2
                 puts "Thank you for visiting."
                 puts "See you again soon!"

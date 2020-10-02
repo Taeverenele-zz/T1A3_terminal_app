@@ -30,7 +30,6 @@ class Folder
         existing_dir, stderr, status = Open3.capture3("ls")
         existing_dir.split("\n").each do |dir|
             if dir == @folder_name
-
                 print "You already have a folder called #{@folder_name}, please choose another name: "
                 @folder_name = gets.chomp
             end

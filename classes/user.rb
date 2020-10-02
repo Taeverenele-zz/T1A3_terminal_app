@@ -6,13 +6,13 @@ class User
         @current_user = current_user
     end
     
-    def self.authenticateUser(list_of_users)
+    def self.authenticateUser(username, password, list_of_users)
         attempts = 1
         while attempts < 4
-            print "Username: "
-            username = gets.chomp
-            print "Password: "
-            password = gets.chomp
+            # print "Username: "
+            # username = gets.chomp
+            # print "Password: "
+            # password = gets.chomp
             list_of_users.each do |user|
                 if user[:name].delete(' ').downcase == username.delete(' ').downcase && user[:password].to_s == password
                     @current_user = user[:name]

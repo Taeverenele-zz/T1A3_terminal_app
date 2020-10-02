@@ -10,7 +10,7 @@ require_relative './classes/boilerplate'
 
 users_array = SmarterCSV.process("users_data.csv")
 boilerplate_array = SmarterCSV.process("users_saved_boilerplates.csv")
-p boilerplate_array
+boilerplate_array.each {|x| puts x[:components_array]}
 names_array = []
 users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
 
@@ -85,9 +85,9 @@ while app_on
                 print "What would you like to call this boilerplate: "
                 boilerplate_name = gets.chomp
                 boilerplate = Boilerplate.new(user.current_user, boilerplate_name)
-                new_boilerplate_array = [user.current_user, boilerplate_name]
+                new_boilerplate_array = [user.current_user, boilerplate_name, folder.all_files]
                 CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
-                    csv << new_boilerplate_array + folder.all_files.to_a
+                    csv << new_boilerplate_array
                 end
             when 2
                 puts "Thank you for visiting."
@@ -101,12 +101,15 @@ while app_on
     # Existing user log in
     when 2
         system"clear"
-        puts User.authenticateUser(users_array)
+        print "Username: "
+        username = gets.chomp
+        print "Password: "
+        password = gets.chomp
+        puts User.authenticateUser(username, password, users_array)
         user_menu_input = prompt.select("What would you like to do next?") do |menu|
             menu.choice 'Start a new project', 1
             menu.choice 'View your boilerplates', 2
-            menu.choice 'Delete a boilerplate', 3
-            menu.choice 'Exit', 4
+            menu.choice 'Exit', 3
         end
         case user_menu_input
         # Existing user start a new project
@@ -116,12 +119,70 @@ while app_on
             folder.addCSS?
             folder.addJavaScript?
             folder.writeFile
+            user_menu_input = prompt.select("Would you like to open folder in VS Code?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+                system("code .")
+            when 2
+                
+            end
+            user_menu_input = prompt.select("Would you like to open index.html in your browser?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+                system("open ./index.html")
+            when 2
+                
+            end               
+             user_menu_input = prompt.select("Would you like to save current project in your boilerplates?") do |menu|
+                menu.choice 'Yes', 1
+                menu.choice 'No', 2
+            end
+            case user_menu_input
+            when 1
+                Dir.chdir("..")
+                print "What would you like to call this boilerplate: "
+                boilerplate_name = gets.chomp
+                boilerplate = Boilerplate.new(user.current_user, boilerplate_name)
+                new_boilerplate_array = [user.current_user, boilerplate_name, folder.all_files]
+                CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
+                    csv << new_boilerplate_array
+                end
+            when 2
+                puts "Thank you for visiting."
+                puts "See you again soon!"
+                sleep 1
+                farewellMsg
+                app_on = false
+            end
         # Existing user view saved boilerplates
         when 2
-        # Existing user delete saved boilerplate
-        when 3
+            Boilerplate.viewBoilerplates(username)
+            user_menu_input = prompt.select("What would you like to do with your boilerplates?") do |menu|
+                menu.choice 'Use boilerplate', 1
+                menu.choice 'Change the name of a boilerplate', 2
+                menu.choice 'Delete a boilerplate', 3
+                menu.choice 'Exit', 4
+            end
+            case user_manu_input
+            when 1
+            when 2
+            when 3
+            puts "Which boilerplate would you like to delete?"
+            users_input = gets.chomp
+            deleteBoilerplate(user_input)
+            when 4
+                system"clear"
+                farewellMsg
+                app_on = false
+            end
         # Exit the app
-        when 4
+        when 3
             system"clear"
             farewellMsg
             app_on = false

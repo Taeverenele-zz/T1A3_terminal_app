@@ -12,7 +12,7 @@ class Boilerplate
 
     def self.viewBoilerplates(user)
         @@boilerplate_array.each do |boilerplate| 
-            if boilerplate[:current_user] == user
+            if boilerplate[:current_user].delete(' ').downcase == user.delete(' ').downcase
                 puts boilerplate[:boilerplate_name]
             end
         end

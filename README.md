@@ -68,51 +68,51 @@ Finally the app will let you save the boilerplate created and give it a name. Ne
 
 The user can launch the app as an executable file or by running the file in the CLI. First thing the user sees is a welcome message followed by main menu options with a two second delay. 
 
-![Welcome screen](./docs/Welcome.png)
+![Welcome screen](../docs/Welcome.png)
 
 If user is not a member, they will need to sign up. Currently just asking for name and password to be able to log in.
 
-![New User Menu](./docs/new_user_menu.png)
+![New User Menu](../docs/new_user_menu.png)
 
 If user chooses to start a new project, they are prompted for a project name, which will be the name of the folder created and will be the title of the index.html page created. If user enters the name of a folder that already exists in current directory, they are prompted to choose a different name.
 
-![Name your project](./docs/name_project.png)
+![Name your project](../docs/name_project.png)
 
 User can then say yes or no to adding CSS and JavaScript files and a message will be displayed with what was created depending on the user selections.
 
-![Adding CSS and JavaScript](./docs/css_and_javascript.png)
+![Adding CSS and JavaScript](../docs/css_and_javascript.png)
 
 User is than asked if they would like to open folder in VS Code and if they would like to open index.html in their browser
 
-![Open in VS Code](./docs/VS_Code.png)
-![Open in Browser](./docs/open_browser.png)
+![Open in VS Code](../docs/VS_Code.png)
+![Open in Browser](../docs/open_browser.png)
 
 User is then asked if they would like to save the current setup to their boilerplates and if they say yes, then a boilerplate title is requested.
 
-![Save boilerplate](./docs/save_boilerplate.png)
+![Save boilerplate](../docs/save_boilerplate.png)
 
 Message is displayed confirming that the boilerplate was saved and app is exited with a farewell message.
 
-![Farewell message](./docs/farewell_message.png)
+![Farewell message](../docs/farewell_message.png)
 
 A returning user has a different menu displayed
 
-![Returning user menu](./docs/returning_user.png)
+![Returning user menu](../docs/returning_user.png)
 
 When user chooses to view the boilerplates, all the names of the previously saved  boilerplates by this user are displayed with menu options for next step.
 
-![View boilerplates](./docs/view_boilerplates.png)
+![View boilerplates](../docs/view_boilerplates.png)
 
 As I was unable to finish my boilerplate manipulation feature, if user currently chooses any options from the boilerplate menu, an error message is displayed until user exits the menu.
 
-![Boilerplate Error Message](./docs/boilerplate_error.png)
+![Boilerplate Error Message](../docs/boilerplate_error.png)
 
       
 
 
 # Control Flow diagram
 
-![Control Flow diagram](./docs/Terminal_app_v1.4.png)
+![Control Flow diagram](../docs/Terminal_app_v1.4.png)
 
 # Trello board
 
@@ -120,8 +120,8 @@ As I was unable to finish my boilerplate manipulation feature, if user currently
 
 I did try and start with unit testing but found it difficult and time consuming not knowing what I was doing, so ended up doing manual testing instead.
 
-![Testing page 1](./docs/testing_page_1.png)
-![Testing page 2](./docs/testing_page_2.png)
+![Testing page 1](../docs/testing_page_1.png)
+![Testing page 2](../docs/testing_page_2.png)
 
 # Author
 

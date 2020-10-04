@@ -17,11 +17,6 @@ users_array.map{|user| names_array << user[:name]}
 app_on = true
 add_files_array = []
 all_folders = []
-# if ARGV[0] == '-h' || ARGV[0] == '--help'
-#     puts "This is a helpful messge"
-# elsif ARGV[0] == User.user_name && ARGV[1] == user.user_password
-#     puts "You already have an account"
-# end
 
 if ARGV.empty?
     welcomeMsg
@@ -65,20 +60,20 @@ if ARGV.empty?
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Open project in VS Code
                 when 1
                     system("code .")
                 when 2
-                    
                 end
                 user_menu_input = prompt.select("Would you like to open index.html in your browser?") do |menu|
                     menu.choice 'Yes', 1
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Open project in browser
                 when 1
                     system("open ./index.html")
                 when 2
-                    
                 end               
                 user_menu_input = prompt.select("Would you like to save current project in your boilerplates?") do |menu|
                     menu.choice 'Yes', 1
@@ -159,8 +154,8 @@ if ARGV.empty?
                     Dir.chdir("..")
                     print "What would you like to call this boilerplate: "
                     boilerplate_name = gets.chomp
-                    boilerplate = Boilerplate.new(user.current_user, boilerplate_name)
-                    new_boilerplate_array = [user.current_user, boilerplate_name, folder.all_files]
+                    boilerplate = Boilerplate.new(username, boilerplate_name)
+                    new_boilerplate_array = [username, boilerplate_name, folder.all_files]
                     CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
                         csv << new_boilerplate_array
                     end

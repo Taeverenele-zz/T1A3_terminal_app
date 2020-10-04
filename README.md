@@ -1,5 +1,7 @@
 # About the app
 
+[Link to Github repository](https://github.com/Taeverenele/T1A3_terminal_app)
+
 ## Installation
 
 Install using following steps
@@ -115,6 +117,10 @@ As I was unable to finish my boilerplate manipulation feature, if user currently
 ![Control Flow diagram](../docs/Terminal_app_v1.4.png)
 
 # Trello board
+
+![Trello board](../docs/trello.png)
+
+[click here for Trello board link](https://trello.com/b/8L5jT4oW/terminal-app-v13)
 
 # Testing
 

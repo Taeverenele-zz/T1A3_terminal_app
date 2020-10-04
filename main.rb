@@ -35,6 +35,11 @@ if ARGV.empty?
             system"clear"
             print "Username: "
             user_name = gets.chomp
+            while user_name.empty?
+                errorMsg
+                print "Name cannot be an empty string, choose another name: "
+                user_name = gets.chomp
+            end
             puts User.checkIfNameExists(user_name, names_array)
             print "Password: "
             user_password = gets.chomp
@@ -85,6 +90,11 @@ if ARGV.empty?
                     Dir.chdir("..")
                     print "What would you like to call this boilerplate: "
                     boilerplate_name = gets.chomp
+                    while boilerplate_name.empty?
+                        errorMsg
+                        print "Boilerplate name cannot be an empty string, choose another name: "
+                        boilerplate_name = gets.chomp
+                    end
                     boilerplate = Boilerplate.new(user.current_user, boilerplate_name)
                     new_boilerplate_array = [user.current_user, boilerplate_name, folder.all_files]
                     CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
@@ -159,6 +169,11 @@ if ARGV.empty?
                     Dir.chdir("..")
                     print "What would you like to call this boilerplate: "
                     boilerplate_name = gets.chomp
+                    while boilerplate_name.empty?
+                        errorMsg
+                        print "Boilerplate name cannot be an empty string, choose another name: "
+                        boilerplate_name = gets.chomp
+                    end
                     boilerplate = Boilerplate.new(username, boilerplate_name)
                     new_boilerplate_array = [username, boilerplate_name, folder.all_files]
                     CSV.open("users_saved_boilerplates.csv", "a+") do |csv|

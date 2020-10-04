@@ -220,6 +220,8 @@ elsif ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "  then run 'ruby main.rb"
     puts "  alternativey run './run_app.sh"
     puts "  which will first download all gems needed for this app and then will launch the app."
+    puts "\nRequirements:"
+    puts "  VS Code is required if user chooses to run the created project file in code editor."
     puts "\nOptions:"
     puts "  -h or --help        # get help file\n\n"
 end

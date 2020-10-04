@@ -1,20 +1,22 @@
-require_relative '../user'
-require_relative '../folder'
+require_relative '../classes/user'
+require_relative '../classes/folder'
 
-# describe User do
-#     it 'should return the name of the user' do
-#         name = 'Nele'
-#         password = '123password'
-#         user = User.new(name, password)
-#         expect(user.name).to eq(name)
-#     end
-#     it 'should return the password of the user' do
-#         name = 'Nele'
-#         password = '123password'
-#         user = User.new(name, password)
-#         expect(user.password).to eq(password)
-#     end
-# end
+describe User do
+    it 'should return the name of the user' do
+        user_name = 'Nele'
+        user_password = '123password'
+        current_user = 'Nele'
+        user = User.new(user_name, user_password, current_user)
+        expect(user.user_name).to eq(user_name)
+    end
+    it 'should return the password of the user' do
+        user_name = 'Nele'
+        user_password = '123password'
+        current_user = 'Nele'
+        user = User.new(user_name, user_password, current_user)
+        expect(user.user_password).to eq(user_password)
+    end
+end
 
 describe Folder do
     it 'should return the name of the folder' do

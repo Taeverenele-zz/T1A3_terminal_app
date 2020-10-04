@@ -80,6 +80,7 @@ if ARGV.empty?
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Save boilerplate and exit app
                 when 1
                     Dir.chdir("..")
                     print "What would you like to call this boilerplate: "
@@ -96,6 +97,7 @@ if ARGV.empty?
                     farewellMsg
                     app_on = false
                 when 2
+                    # Exit app without saving boilerplate
                     puts "Thank you for visiting."
                     puts "See you again soon!"
                     sleep 2
@@ -130,6 +132,7 @@ if ARGV.empty?
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Open code in VS Code
                 when 1
                     system("code .")
                 when 2
@@ -140,6 +143,7 @@ if ARGV.empty?
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Open code in browser
                 when 1
                     system("open ./index.html")
                 when 2
@@ -150,6 +154,7 @@ if ARGV.empty?
                     menu.choice 'No', 2
                 end
                 case user_menu_input
+                # Save boilerplate and exit app
                 when 1
                     Dir.chdir("..")
                     print "What would you like to call this boilerplate: "
@@ -159,6 +164,13 @@ if ARGV.empty?
                     CSV.open("users_saved_boilerplates.csv", "a+") do |csv|
                         csv << new_boilerplate_array
                     end
+                    puts "Your boilerplate was saved"
+                    puts "Thank you for using HTML Boilerplate Creator"
+                    puts "See you again soon"
+                    sleep 2
+                    farewellMsg
+                    app_on = false
+                # Exit app without saving boilerplate
                 when 2
                     puts "Thank you for visiting."
                     puts "See you again soon!"

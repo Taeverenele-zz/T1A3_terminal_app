@@ -244,6 +244,7 @@ elsif ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "  which will first download all gems needed for this app and then will launch the app."
     puts "\nRequirements:"
     puts "  VS Code is required if user chooses to run the created project file in code editor."
+    puts "  Only tested on macOS Catalina Version 10.15.6. May not be compatible on other OS."
     puts "\nOptions:"
     puts "  -h or --help        # get help file\n\n"
 end

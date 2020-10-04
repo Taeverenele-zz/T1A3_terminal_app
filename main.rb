@@ -10,13 +10,18 @@ require_relative './classes/boilerplate'
 
 users_array = SmarterCSV.process("users_data.csv")
 boilerplate_array = SmarterCSV.process("users_saved_boilerplates.csv")
-boilerplate_array.each {|x| puts x[:components_array]}
+# boilerplate_array.each {|x| puts x[:components_array]}
 names_array = []
-users_array.map{|user| names_array << user[:name].downcase.delete(' ')}
+users_array.map{|user| names_array << user[:name]}
 
 app_on = true
 add_files_array = []
 all_folders = []
+if ARGV[0] == '-h' || ARGV[0] == '--help'
+    puts "This is a helpful messge"
+# elsif ARGV[0] == User.user_name && ARGV[1] == user.user_password
+#     puts "You already have an account"
+end
 
 
 welcomeMsg
@@ -92,13 +97,13 @@ while app_on
                 puts "Your boilerplate was saved"
                 puts "Thank you for using HTML Boilerplate Creator"
                 puts "See you again soon"
-                sleep 1
+                sleep 2
                 farewellMsg
                 app_on = false
             when 2
                 puts "Thank you for visiting."
                 puts "See you again soon!"
-                sleep 1
+                sleep 2
                 farewellMsg
                 app_on = false
             end
@@ -169,23 +174,26 @@ while app_on
         # Existing user view saved boilerplates
         when 2
             Boilerplate.viewBoilerplates(username)
-            user_menu_input = prompt.select("What would you like to do with your boilerplates?") do |menu|
-                menu.choice 'Use boilerplate', 1
-                menu.choice 'Change the name of a boilerplate', 2
-                menu.choice 'Delete a boilerplate', 3
-                menu.choice 'Exit', 4
-            end
-            case user_manu_input
-            when 1
-            when 2
-            when 3
-            puts "Which boilerplate would you like to delete?"
-            users_input = gets.chomp
-            deleteBoilerplate(user_input)
-            when 4
-                system"clear"
-                farewellMsg
-                app_on = false
+            loop do
+                user_menu_input = prompt.select("What would you like to do with your boilerplates?") do |menu|
+                    menu.choice 'Use boilerplate', 1
+                    menu.choice 'Change the name of a boilerplate', 2
+                    menu.choice 'Delete a boilerplate', 3
+                    menu.choice 'Exit', 4
+                end
+                case user_menu_input
+                when 1
+                    featureUnfinished
+                when 2
+                    featureUnfinished
+                when 3
+                    featureUnfinished
+                when 4
+                    system"clear"
+                    farewellMsg
+                    app_on = false
+                    break 
+                end
             end
         # Exit the app
         when 3

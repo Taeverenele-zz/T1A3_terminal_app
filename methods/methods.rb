@@ -38,39 +38,8 @@ def farewellMsg
     box = TTY::Box.frame "#{title1}", "#{title1}", padding: 5, align: :center 
     print box
 end
-
-
-
-# 
-
-
-#         
-#         
-
-#             p folder.all_files
-#             p folder.folder_name
-
-#             
-#             when 1
-#                 
-#             when 2
-# 
-#                 
-#                 when 1
-#                     system("open ./index.html")
-#                 when 2
-#     
-#                     case user_menu_input
-#                     when 1
-#                     when 2
-
-#                     end
-#                 end
-#             end
-                   
-#         # Exit the app
-#         when 2
-#             system"clear"
-#             farewellMsg
-#             app_on = false
-#         end
+def featureUnfinished
+    pastel = Pastel.new
+    puts pastel.red("This feature is still a working process.")
+    puts pastel.red("Apologies for the inconvenience caused. We will get this up and running as soon as possible.")
+end

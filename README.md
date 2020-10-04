@@ -10,7 +10,15 @@ Install using following steps
 
 2. Clone repo
 
-```git clone git@github.com:Taeverenele/T1A3_terminal_app.git```
+``` git clone git@github.com:Taeverenele/T1A3_terminal_app.git ```
+
+3. Change directories
+
+``` cd <file name> ```
+
+4. Run the shell script
+
+``` ./run_app.sh ```
 
 ## Description
 
